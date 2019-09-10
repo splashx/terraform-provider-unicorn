@@ -21,7 +21,9 @@ func Provider() *schema.Provider {
 				Description: "Gitlab Server URL, defaults to gitlab.com",
 			},
 		},
-		ResourcesMap:  map[string]*schema.Resource{},
+		ResourcesMap: map[string]*schema.Resource{
+			"snippet": resourceSnippet(),
+		},
 		ConfigureFunc: providerConfigure,
 	}
 }
