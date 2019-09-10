@@ -28,7 +28,7 @@ func Provider() *schema.Provider {
 
 func providerConfigure(d *schema.ResourceData) (interface{}, error) {
 	config := Config{
-		Token:   d.Get("api_key").(string),
+		Token:   d.Get("token").(string),
 		BaseURL: d.Get("server_url").(string),
 	}
 
