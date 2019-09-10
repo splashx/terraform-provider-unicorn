@@ -22,7 +22,7 @@ func Provider() *schema.Provider {
 			},
 		},
 		ResourcesMap: map[string]*schema.Resource{
-			"snippet": resourceSnippet(),
+			"unicorn_snippet": resourceSnippet(),
 		},
 		ConfigureFunc: providerConfigure,
 	}
