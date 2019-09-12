@@ -50,7 +50,7 @@ func resourceSnippetCreate(d *schema.ResourceData, m interface{}) error {
 		FileName:    gitlab.String(d.Get("file_name").(string)),
 		Content:     gitlab.String(d.Get("content").(string)),
 		Description: gitlab.String("Created by terraform-unicorn"),
-		Visibility:  gitlab.Visibility(gitlab.PublicVisibility),
+		Visibility:  gitlab.Visibility(gitlab.PrivateVisibility),
 	}
 	snippet, _, err := client.Snippets.CreateSnippet(createSnippetOptions)
 
