@@ -71,17 +71,16 @@ func resourceSnippetRead(d *schema.ResourceData, m interface{}) error {
 		return err
 	}
 
-	snippet, _, err := client.Snippets.GetSnippet(snippetID)
+	snippet, resp, err := client.Snippets.GetSnippet(snippetID)
 
 	if err != nil {
+		if resp.StatusCode == 404 || snippet == nil {
+			fmt.Printf("[WARN] removing snippet id %d from state - not found in gitlab", snippetID)
+			d.SetId("")
+			return nil
+		}
 		return err
 	}
-
-	if snippet == nil {
-		fmt.Printf("[WARN] removing snippet id %d from state - not found in gitlab", snippetID)
-		d.SetId("")
-	}
-
 	return nil
 }
 
